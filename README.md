@@ -2,7 +2,7 @@
 
 A Dynamic-Island-style pill around the MacBook notch that shows what your coding agents and your Mac are up to — at a glance.
 
-NotchPulse is a borderless `NSPanel` hosting a SwiftUI view, running as a menu-bar-less agent app (`LSUIElement`). Collapsed, it shows status orbs and a sparkline next to the notch. Hover to expand it into two columns.
+NotchPulse is a borderless `NSPanel` hosting a SwiftUI view, running as a menu-bar-less agent app (`LSUIElement`). On notched displays, the collapsed widget is invisible, with a hover target covering the hardware notch. Hover to expand it into two columns. On other displays, it collapses to a blank pill below the menu bar.
 
 ## Features
 

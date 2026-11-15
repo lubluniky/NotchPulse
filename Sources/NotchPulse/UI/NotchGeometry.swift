@@ -18,7 +18,6 @@ struct NotchGeometry: Equatable {
     /// Horizontal center of the notch / pill in global coordinates.
     var centerX: CGFloat
 
-    var wingWidth: CGFloat = 80
     var expandedSize = CGSize(width: 640, height: 252)
     /// Transparent margin around the shape inside the panel so the drop shadow isn't clipped.
     var shadowMargin: CGFloat = 32
@@ -32,11 +31,8 @@ struct NotchGeometry: Equatable {
     var collapsedTopRadius: CGFloat { hasNotch ? 0 : bandHeight / 2 }
     var expandedTopRadius: CGFloat { hasNotch ? 0 : 24 }
 
-    /// Gap kept free in the middle of the collapsed band (the notch itself, or a small gap).
-    var centerGap: CGFloat { hasNotch ? notchWidth : 14 }
-
     var collapsedSize: CGSize {
-        CGSize(width: centerGap + 2 * wingWidth + 2 * collapsedEar, height: bandHeight)
+        CGSize(width: hasNotch ? notchWidth : 180, height: bandHeight)
     }
 
     var panelSize: CGSize {

@@ -42,13 +42,6 @@ final class NotchViewModel: ObservableObject {
     var visibleThreads: [AgentThread] {
         Array(agents.threads.filter { !$0.isSubagent }.prefix(8))
     }
-
-    /// Summary orb state for the collapsed left wing.
-    var summaryState: AgentState {
-        if agents.needsInputCount > 0 { return .needsInput }
-        if agents.runningCount > 0 { return .running }
-        return .idle
-    }
 }
 
 /// Best-effort launcher for the T3 Code desktop app.

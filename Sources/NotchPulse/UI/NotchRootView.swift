@@ -18,7 +18,7 @@ struct NotchRootView: View {
             // Static silhouette + shadow on its own layer, so per-second content updates
             // never invalidate (and re-blur) the shadow.
             shape
-                .fill(Color.black)
+                .fill(Color.black.opacity(expanded || !g.hasNotch ? 1 : 0))
                 .shadow(color: .black.opacity(expanded ? 0.5 : 0), radius: expanded ? 16 : 0, x: 0, y: expanded ? 8 : 0)
                 .overlay(
                     // Hairline rim when expanded / floating so the body separates from dark wallpapers.
@@ -36,11 +36,13 @@ struct NotchRootView: View {
                                 .animation(.spring(response: 0.36, dampingFraction: 0.84).delay(0.04)),
                             removal: .opacity.animation(.easeOut(duration: 0.1))))
                 } else {
-                    CollapsedView(model: model)
-                        .frame(width: g.collapsedSize.width, height: g.collapsedSize.height)
-                        .transition(.asymmetric(
-                            insertion: .opacity.animation(.easeOut(duration: 0.2).delay(0.12)),
-                            removal: .opacity.animation(.easeOut(duration: 0.08))))
+                    Button(action: { model.isExpanded = true }) {
+                        Color.clear
+                            .frame(width: g.collapsedSize.width, height: g.collapsedSize.height)
+                            .contentShape(Rectangle())
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityLabel("Expand NotchPulse")
                 }
             }
             .frame(width: size.width, height: size.height, alignment: .top)
